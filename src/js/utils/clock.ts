@@ -1,6 +1,6 @@
 import { now as getTime } from 'utils/date';
 
-const performance = window.performance || {
+const performance: Performance | any = window.performance || {
     timing: {}
 };
 const startDate = performance.timing.navigationStart || getTime();
@@ -9,10 +9,10 @@ if (!('now' in performance)) {
     performance.now = () => (getTime() - startDate);
 }
 
-export function now() {
+export function now(): number {
     return performance.now();
 }
 
-export function dateTime() {
+export function dateTime(): number {
     return startDate + performance.now();
 }
